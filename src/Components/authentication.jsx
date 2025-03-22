@@ -8,17 +8,25 @@ export default function Authentication() {
 
     const account = useActiveAccount();
     const navigate = useNavigate();
-    
+
     useEffect(() => {
-        if(account) {
-            navigate("/marketplace")
-        }   
-    },[account, navigate])
+        if (account) {
+            return ;
+        }
+    }, [account, navigate])
 
 
     return (
         <>
-            <Login/>
+            <Login />
+            {
+                account &&             <iframe
+                src="http://localhost:4000/"
+                height="600"
+                width="800"
+                title="Game Iframe"
+            />
+            }
         </>
     )
 }
