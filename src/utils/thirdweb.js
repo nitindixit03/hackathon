@@ -17,4 +17,4 @@ const contract = getContract({
 });
 
 
-export default contract
+export {contract,client}
