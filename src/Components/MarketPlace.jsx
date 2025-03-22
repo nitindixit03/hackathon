@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { Button } from "@heroui/react";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import Masonry from "react-masonry-css";
-import Pwn from "../assets/Pwn.png"; // Adjust path if needed
+import Pwn from "../assets/Pwn.png"; 
 
 const images = [
   "https://picsum.photos/300/400",
