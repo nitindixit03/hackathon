@@ -1,21 +1,11 @@
-import { socket } from "./sockets";
+import React from 'react'
+import MarketPlace from './Components/MarketPlace'
 
-function App() {
-
-  // Set up the event listener once when the component mounts
-  socket.on("connect", () => {
-    console.log("Connected to the server");
-  });
-
-  function handle() {
-    socket.connect(); // Start the connection when the button is clicked
-  }
-
+const App = () => {
   return (
-    <>
-      <button onClick={handle}>Click to Connect</button>
-    </>
-  );
+      <MarketPlace />
+  
+  )
 }
 
-export default App;
+export default App
