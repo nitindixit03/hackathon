@@ -44,7 +44,7 @@ const Marketplace = ({ isSidebarOpen }) => {
               src={src}
               alt={`img-${index}`}
               className="w-full rounded-[20px] transition-all duration-500 ease-in-out 
-                group-hover:scale-110 group-hover:rotate-2 group-hover:brightness-90 "
+                group-hover:scale-110 group-hover:rotate-2 group-hover:brightness-90"
             />
             {/* Button Overlay */}
             <div
