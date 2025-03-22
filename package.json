@@ -10,6 +10,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "pinata": "^2.1.0",
+    "socket.io-client": "^4.8.1",
+    "thirdweb": "^5.93.2",
     "@heroicons/react": "^2.2.0",
     "@heroui/react": "^2.7.5",
     "@tailwindcss/vite": "^4.0.15",

@@ -7,5 +7,22 @@ body, html {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: "Space Grotesk", sans-serif;
+    font-optical-sizing: auto;
+    
+    font-style: normal;
+    
   }
+  .new-tegomin-regular {
+    font-family: "New Tegomin", serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+
+  .space-grotesk {
+    font-family: "Space Grotesk", sans-serif;
+    font-optical-sizing: auto;
+    
+    font-style: normal;
+  }  
   
