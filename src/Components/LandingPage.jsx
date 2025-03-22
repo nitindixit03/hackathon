@@ -43,17 +43,15 @@ const LandingPage = () => {
 
   // Placeholder function for navigating to another page
   const navigateToNextPage = () => {
-    // Replace this with your navigation logic
     console.log("Navigating to the next page...");
-    // Example: window.location.href = "/next-page";
   };
 
   return (
-    <div className="h-screen flex flex-col bg-[#f1b8a7] overflow-x-hidden">
+    <div className="h-screen flex flex-col bg-[#f1b8a7] overflow-hidden">
       {/* Landing Page Section */}
       <section
         ref={landingSectionRef}
-        className="flex-1 flex items-center justify-between p-10 relative"
+        className="flex-1 flex items-center justify-between p-10 relative overflow-hidden"
       >
         {/* Left Side - Text */}
         <div className="w-1/2 flex justify-center">
@@ -92,12 +90,17 @@ const LandingPage = () => {
       </section>
 
       {/* Footer */}
-      <footer className="w-full flex justify-center pb-4 bg-[#f1b8a7]">
-        {/* Add any footer content here if needed */}
-      </footer>
+      <footer className="w-full flex justify-center pb-4 bg-[#f1b8a7]"></footer>
 
       {/* Floating Animation */}
       <style>{`
+        /* Hide scrollbars on body */
+        body, html {
+          margin: 0;
+          padding: 0;
+          overflow: hidden;
+        }
+
         @keyframes float {
           0% { transform: translateY(0); }
           50% { transform: translateY(-10px); }
