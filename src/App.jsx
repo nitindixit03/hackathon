@@ -3,6 +3,7 @@ import MarketPlace from './Components/MarketPlace'
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from './Components/ui/connectBUtton';
 import LandingPage from './Components/LandingPage';
+import AUthenticate from './Components/authentication';
 
 
 const App = () => {
@@ -11,7 +12,7 @@ const App = () => {
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<LandingPage/>}/>
-            <Route path="/login" element={<Login/>} />
+            <Route path="/login" element={<AUthenticate/>} />
             <Route path="/marketplace" element={<MarketPlace/>}/>
           </Routes>
         </BrowserRouter>

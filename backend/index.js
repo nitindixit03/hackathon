@@ -3,13 +3,42 @@ import path from "path";
 import { fileURLToPath } from "url";
 import cors from "cors";
 import fs from "fs";
+import http from "http";
+import { Server } from "socket.io";
 
+// Get current file path and directory
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const app = express();
+const server = http.createServer(app);
+
+const io = new Server(server, {
+  cors: {
+    origin: "*",
+    methods: ["GET", "POST"],
+  },
+});
+
+app.use((req, res, next) => {
+    res.removeHeader("X-Frame-Options");
+    next();
+  });
 
 app.use(cors());
+
+io.on("connection", (socket) => {
+  console.log("🔥 A user connected");
+
+  socket.on("creator-join", (data) => {
+    console.log("✅ Creator joined with data:", data);
+    // Handle creator-join event
+  });
+
+  socket.on("disconnect", () => {
+    console.log("❌ User disconnected");
+  });
+});
 
 // ✅ Serve static files from "public/TemplateData"
 app.use("/TemplateData", express.static(path.join(__dirname, "public/TemplateData")));
@@ -17,54 +46,47 @@ app.use("/TemplateData", express.static(path.join(__dirname, "public/TemplateDat
 // ✅ Serve other static files from "public"
 app.use(express.static(path.join(__dirname, "public")));
 
-// 👉 Custom route to serve files (similar to the first code snippet)
-app.get("*", (req, res) => {
-    let filePath = path.join(__dirname, "public", req.url);
-    if (filePath === path.join(__dirname, "public", "/")) filePath = path.join(__dirname, "public", "index.html");
+// ✅ Custom route to serve files from /game
+app.get("/game*", (req, res) => {
+  let filePath = path.join(__dirname, "public", "game", "index.html");
 
-    const extname = String(path.extname(filePath)).toLowerCase();
-    const mimeTypes = {
-        ".html": "text/html",
-        ".js": "text/javascript",
-        ".json": "application/json",
-        ".css": "text/css",
-        ".png": "image/png",
-        ".jpg": "image/jpg",
-        ".gif": "image/gif",
-        ".wasm": "application/wasm",
-        ".data": "application/octet-stream",
-    };
+  if (req.url !== "/game" && req.url !== "/game/") {
+    // Extract the file path from the URL (e.g., /game/script.js -> script.js)
+    const relativeFilePath = req.url.replace("/game", "");
+    filePath = path.join(__dirname, "public", "game", relativeFilePath);
+  }
 
-    const contentType = mimeTypes[extname] || "application/octet-stream";
+  const extname = String(path.extname(filePath)).toLowerCase();
+  const mimeTypes = {
+    ".html": "text/html",
+    ".js": "text/javascript",
+    ".json": "application/json",
+    ".css": "text/css",
+    ".png": "image/png",
+    ".jpg": "image/jpg",
+    ".gif": "image/gif",
+    ".wasm": "application/wasm",
+    ".data": "application/octet-stream",
+  };
 
-    fs.readFile(filePath, (err, content) => {
-        if (err) {
-            if (err.code === "ENOENT") {
-                // File not found
-                res.status(404).send("404 Not Found");
-            } else {
-                // Server error
-                res.status(500).send("Server Error: " + err.code);
-            }
-        } else {
-            // Success
-            res.status(200).contentType(contentType).send(content);
-        }
-    });
+  const contentType = mimeTypes[extname] || "application/octet-stream";
+
+  fs.readFile(filePath, (err, content) => {
+    if (err) {
+      if (err.code === "ENOENT") {
+        res.status(404).send("404 Not Found");
+      } else {
+        res.status(500).send(`Server Error: ${err.code}`);
+      }
+    } else {
+      res.status(200).contentType(contentType).send(content);
+    }
+  });
 });
 
-// 👉 Route to serve editor.html
-app.get("/editor", (req, res) => {
-    res.sendFile(path.join(__dirname, "public", "editor.html"));
-});
+const PORT = 4000;
 
-// 👉 Route to serve viewer.html
-app.get("/viewer", (req, res) => {
-    res.sendFile(path.join(__dirname, "public", "viewer.html"));
-});
-
-const PORT = 3000;
-
-app.listen(PORT, () => {
-    console.log(`🚀 Server running at http://localhost:${PORT}`);
+// ✅ Start the HTTP server (instead of app)
+server.listen(PORT, () => {
+  console.log(`🚀 Server running at http://localhost:${PORT}`);
 });
