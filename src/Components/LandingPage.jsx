@@ -1,5 +1,6 @@
 import { useRef, useEffect, useState } from "react";
 import Pwn from "../assets/Pwn.png";
+import { useNavigate } from "react-router-dom";
 
 const LandingPage = () => {
   const landingSectionRef = useRef(null);
@@ -41,12 +42,7 @@ const LandingPage = () => {
     type();
   }, []);
 
-  // Placeholder function for navigating to another page
-  const navigateToNextPage = () => {
-    // Replace this with your navigation logic
-    console.log("Navigating to the next page...");
-    // Example: window.location.href = "/next-page";
-  };
+  const navigate = useNavigate();
 
   return (
     <div className="h-screen flex flex-col bg-[#f1b8a7] overflow-x-hidden">
@@ -83,7 +79,7 @@ const LandingPage = () => {
         {/* Continue Button */}
         <div className="absolute bottom-20 w-full flex justify-center">
           <button
-            onClick={navigateToNextPage}
+            onClick={() => navigate("/login")}
             className="bg-[#efc078] text-white px-6 py-3 rounded-lg text-lg shadow-lg border-2 border-[#4a3b3b] hover:bg-[#e0a895] transition-colors"
           >
             Continue
