@@ -85,7 +85,7 @@ export default function HomePage() {
 
   return (
     <div className="flex h-screen overflow-y-auto bg-gradient-to-br from-[#f6e9df] to-[#dec0ac] relative">
-      {/* Responsive NFT Title */}
+      {/* Responsive NFT  */}
       <h1
         className={`absolute top-4 transform -translate-x-1/2 text-3xl sm:text-5xl md:text-7xl 
             font-extrabold text-[#4a3b3b] drop-shadow-lg tracking-widest 
