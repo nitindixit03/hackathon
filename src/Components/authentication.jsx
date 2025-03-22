@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 
-export default function AUthenticate() {
+export default function Authentication() {
 
     const account = useActiveAccount();
     const navigate = useNavigate();
