@@ -10,19 +10,33 @@
     "preview": "vite preview"
   },
   "dependencies": {
+<<<<<<< HEAD
+=======
+    "pinata": "^2.1.0",
+    "socket.io-client": "^4.8.1",
+    "thirdweb": "^5.93.2",
+>>>>>>> 19f7c206f10e4c62cbb965f6369fc66774248529
     "@heroicons/react": "^2.2.0",
     "@heroui/react": "^2.7.5",
     "@tailwindcss/vite": "^4.0.15",
     "framer-motion": "^12.5.0",
+<<<<<<< HEAD
     "pinata": "^2.1.0",
+=======
+    "lucide-react": "^0.483.0",
+>>>>>>> 19f7c206f10e4c62cbb965f6369fc66774248529
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-icons": "^5.5.0",
     "react-masonry-css": "^1.0.16",
+<<<<<<< HEAD
     "react-router-dom": "^7.4.0",
     "socket.io-client": "^4.8.1",
     "tailwindcss": "^4.0.15",
     "thirdweb": "^5.93.2"
+=======
+    "tailwindcss": "^4.0.15"
+>>>>>>> 19f7c206f10e4c62cbb965f6369fc66774248529
   },
   "devDependencies": {
     "@eslint/js": "^9.21.0",

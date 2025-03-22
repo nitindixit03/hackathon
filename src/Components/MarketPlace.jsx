@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { Button } from "@heroui/react";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import Masonry from "react-masonry-css";
-import Pwn from "../assets/Pwn.png"; // Adjust path if needed
+import Pwn from "../assets/Pwn.png"; 
 
 const images = [
   "https://picsum.photos/300/400",
@@ -47,25 +47,30 @@ const Marketplace = ({ isSidebarOpen }) => {
                 group-hover:scale-110 group-hover:rotate-2 group-hover:brightness-90"
             />
             {/* Button Overlay */}
-            <div
-              className="absolute inset-0 flex justify-between items-center p-6 opacity-0 
-              group-hover:opacity-100 transition-all duration-500 ease-in-out 
-              transform group-hover:translate-y-0 translate-y-full backdrop-blur-lg rounded-[20px]"
-            >
-              <Button
-                className="px-6 py-3 bg-[#f1b8a7] text-black font-extrabold rounded-full 
-                shadow-lg hover:shadow-xl hover:scale-110 active:scale-95 transition-all duration-300"
+              <div
+                className={`absolute inset-0 flex items-center ${
+                  isSidebarOpen ? "justify-center gap-6" : "justify-between"
+                } p-6 opacity-0 
+                group-hover:opacity-100 transition-all duration-500 ease-in-out 
+                transform group-hover:translate-y-0 translate-y-full backdrop-blur-lg rounded-[20px]`}
               >
-                👀 View
-              </Button>
-              <Button
-                className="px-6 py-3 bg-[#a28c7b] text-white font-extrabold rounded-full 
-                shadow-lg hover:bg-[#f1b8a7] hover:text-black hover:scale-110 
-                active:scale-95 transition-all duration-300"
-              >
-                🛒 Buy
-              </Button>
-            </div>
+                <Button
+                  className="flex items-center justify-center px-6 py-3 bg-[#f1b8a7] 
+                 text-black font-extrabold text-lg rounded-full 
+                  shadow-lg hover:shadow-xl hover:scale-110 active:scale-95 
+                  transition-all duration-300"
+                >
+                  👀 View
+                </Button>
+                <Button
+                  className="flex items-center justify-center px-6 py-3 bg-[#a28c7b] 
+                  text-white font-extrabold text-lg rounded-full 
+                  shadow-lg hover:bg-[#f1b8a7] hover:text-black hover:scale-110 
+                  active:scale-95 transition-all duration-300"
+                >
+                  🛒 Buy
+                </Button>
+              </div>
           </div>
         ))}
       </Masonry>
@@ -91,7 +96,7 @@ export default function HomePage() {
         <img
           src={Pwn}
           alt="Pwn Logo"
-          className="inline-block w-14 h-14 md:w-20 md:h-20 mr-2 animate-bounce"
+          className="inline-block w-14 h-16 md:w-20 md:h-20 lg:w-22 lg:h-26 mr-2 animate-bounce"
         />
         <span className="text-[#8A575A] font-comic">MARKETPLACE</span>
       </h1>
