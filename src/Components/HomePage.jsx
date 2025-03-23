@@ -1,8 +1,12 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaArrowLeft, FaArrowRight, FaTimes } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
+
 
 const HomePage = () => {
+
+  const navigate = useNavigate();
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [selectedEvent, setSelectedEvent] = useState(null);
   const [showTerms, setShowTerms] = useState(false);
@@ -96,7 +100,7 @@ const HomePage = () => {
         )}
 
         {/* Centered Box */}
-        <div className="w-[80%] bg-[#f1b8a7] p-8 rounded-lg shadow-2xl border-4 border-[#b8987c]">
+        <div className="w-[100%] bg-[#f1b8a7] p-8 rounded-lg shadow-2xl border-4 border-[#b8987c]">
           {/* Image Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
             {images.map((image, index) => (
@@ -126,7 +130,7 @@ const HomePage = () => {
                     className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
                   >
                     <button
-                      className="px-5 py-2 bg-[#4caf50] text-white rounded-lg shadow-md hover:bg-[#45a049] transition-all hover:scale-105"
+                      className="px-5 py-2 bg-[#f1b8a7] text-white rounded-lg shadow-md hover:bg-[#a28c7b] transition-all hover:scale-105"
                       onClick={() => handleViewMore(index)}
                     >
                       View More
@@ -171,7 +175,11 @@ const HomePage = () => {
                 >
                   Join as Audience
                 </button>
+<<<<<<< HEAD
                 <button
+=======
+                <button onClick={() =>navigate("/game")}
+>>>>>>> dfb3405b7783366ab20f68429619e864e7376be2
                   className="px-6 py-2 bg-[#4caf50] text-white rounded-lg shadow-md hover:bg-[#45a049] transition-all hover:scale-105"
                 >
                   Join as Creator
@@ -211,7 +219,11 @@ const HomePage = () => {
                 <ul className="list-disc pl-6 mt-2">
                   <li>You must be at least 18 years old.</li>
                   <li>You agree to follow all event rules.</li>
+<<<<<<< HEAD
                   <li>You understand that your data may be collected.</li>
+=======
+                  <li>If You tend to leave event in middle your account will be suspended.</li>
+>>>>>>> dfb3405b7783366ab20f68429619e864e7376be2
                 </ul>
               </p>
               <div className="mb-6">
@@ -234,7 +246,12 @@ const HomePage = () => {
                 </button>
                 <button
                   className="px-6 py-2 bg-[#4caf50] text-white rounded-lg shadow-md hover:bg-[#45a049] transition-all hover:scale-105"
+<<<<<<< HEAD
                   onClick={handleJoinAsInvestor}
+=======
+                  // onClick={handleJoinAsInvestor}
+                  onClick={() => navigate("/voting")}
+>>>>>>> dfb3405b7783366ab20f68429619e864e7376be2
                 >
                   Join as Investor
                 </button>

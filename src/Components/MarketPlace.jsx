@@ -46,7 +46,7 @@ const Marketplace = ({ isSidebarOpen }) => {
               className="w-full rounded-[20px] transition-all duration-500 ease-in-out 
                 group-hover:scale-110 group-hover:rotate-2 group-hover:brightness-90"
             />
-            {/* Button Overlay */}
+          
               <div
                 className={`absolute inset-0 flex items-center ${
                   isSidebarOpen ? "justify-center gap-6" : "justify-between"
@@ -85,7 +85,7 @@ export default function HomePage() {
 
   return (
     <div className="flex h-screen overflow-y-auto bg-gradient-to-br from-[#f6e9df] to-[#dec0ac] relative">
-      {/* Responsive NFT Title */}
+      {/* Responsive NFT  */}
       <h1
         className={`absolute top-4 transform -translate-x-1/2 text-3xl sm:text-5xl md:text-7xl 
             font-extrabold text-[#4a3b3b] drop-shadow-lg tracking-widest 
