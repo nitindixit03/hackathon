@@ -1,8 +1,12 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaArrowLeft, FaArrowRight, FaTimes } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
+
 
 const HomePage = () => {
+
+  const navigate = useNavigate();
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [selectedEvent, setSelectedEvent] = useState(null);
   const [showTerms, setShowTerms] = useState(false);
@@ -171,7 +175,7 @@ const HomePage = () => {
                 >
                   Join as Audience
                 </button>
-                <button
+                <button onClick={() =>navigate("/game")}
                   className="px-6 py-2 bg-[#4caf50] text-white rounded-lg shadow-md hover:bg-[#45a049] transition-all hover:scale-105"
                 >
                   Join as Creator
@@ -234,7 +238,8 @@ const HomePage = () => {
                 </button>
                 <button
                   className="px-6 py-2 bg-[#4caf50] text-white rounded-lg shadow-md hover:bg-[#45a049] transition-all hover:scale-105"
-                  onClick={handleJoinAsInvestor}
+                  // onClick={handleJoinAsInvestor}
+                  onClick={() => navigate("/voting")}
                 >
                   Join as Investor
                 </button>
