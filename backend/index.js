@@ -2,9 +2,8 @@ import express from "express";
 import path from "path";
 import { fileURLToPath } from "url";
 import cors from "cors";
-import fs from "fs";
 import http from "http";
-import { Server } from "socket.io";
+import fs from "fs";
 
 // Get current file path and directory
 const __filename = fileURLToPath(import.meta.url);
@@ -13,80 +12,53 @@ const __dirname = path.dirname(__filename);
 const app = express();
 const server = http.createServer(app);
 
-const io = new Server(server, {
-  cors: {
-    origin: "*",
-    methods: ["GET", "POST"],
-  },
-});
-
+// Middleware to remove X-Frame-Options header
 app.use((req, res, next) => {
-    res.removeHeader("X-Frame-Options");
-    next();
-  });
+  res.removeHeader("X-Frame-Options");
+  next();
+});
 
 app.use(cors());
 
-io.on("connection", (socket) => {
-  console.log("🔥 A user connected");
+// Middleware to parse JSON request bodies
+app.use(express.json());
 
-  socket.on("creator-join", (data) => {
-    console.log("✅ Creator joined with data:", data);
-    // Handle creator-join event
-  });
-
-  socket.on("disconnect", () => {
-    console.log("❌ User disconnected");
-  });
-});
-
-// ✅ Serve static files from "public/TemplateData"
-app.use("/TemplateData", express.static(path.join(__dirname, "public/TemplateData")));
-
-// ✅ Serve other static files from "public"
+// Serve static files from the "public" directory
 app.use(express.static(path.join(__dirname, "public")));
 
-// ✅ Custom route to serve files from /game
-app.get("/game*", (req, res) => {
-  let filePath = path.join(__dirname, "public", "game", "index.html");
+// Create a folder to store files
+const filesFolder = path.join(__dirname, "saved-files");
+if (!fs.existsSync(filesFolder)) {
+  fs.mkdirSync(filesFolder);
+}
 
-  if (req.url !== "/game" && req.url !== "/game/") {
-    // Extract the file path from the URL (e.g., /game/script.js -> script.js)
-    const relativeFilePath = req.url.replace("/game", "");
-    filePath = path.join(__dirname, "public", "game", relativeFilePath);
+// Endpoint to save the file
+app.post("/save-file", (req, res) => {
+  const { fileName, base64Data } = req.body;
+
+  if (!fileName || !base64Data) {
+    return res.status(400).json({ success: false, error: "fileName and base64Data are required" });
   }
 
-  const extname = String(path.extname(filePath)).toLowerCase();
-  const mimeTypes = {
-    ".html": "text/html",
-    ".js": "text/javascript",
-    ".json": "application/json",
-    ".css": "text/css",
-    ".png": "image/png",
-    ".jpg": "image/jpg",
-    ".gif": "image/gif",
-    ".wasm": "application/wasm",
-    ".data": "application/octet-stream",
-  };
+  // Decode the base64 data
+  // eslint-disable-next-line no-undef
+  const fileBuffer = Buffer.from(base64Data, "base64");
 
-  const contentType = mimeTypes[extname] || "application/octet-stream";
-
-  fs.readFile(filePath, (err, content) => {
+  // Save the file to the folder
+  const filePath = path.join(filesFolder, fileName);
+  fs.writeFile(filePath, fileBuffer, (err) => {
     if (err) {
-      if (err.code === "ENOENT") {
-        res.status(404).send("404 Not Found");
-      } else {
-        res.status(500).send(`Server Error: ${err.code}`);
-      }
-    } else {
-      res.status(200).contentType(contentType).send(content);
+      console.error("Error saving file:", err);
+      return res.status(500).json({ success: false, error: "Error saving file" });
     }
+
+    console.log("File saved successfully:", fileName);
+    res.status(200).json({ success: true });
   });
 });
 
-const PORT = 4000;
-
-// ✅ Start the HTTP server (instead of app)
+// Start the server
+const PORT = 8888;
 server.listen(PORT, () => {
   console.log(`🚀 Server running at http://localhost:${PORT}`);
 });
