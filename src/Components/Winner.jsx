@@ -15,7 +15,7 @@ const Winner = () => {
     };
 
     fetchTopThree();
-  }, []);
+  }, [topThree]);
 
   // Party popper animation
   const popperAnimation = useSpring({
@@ -85,11 +85,11 @@ const Winner = () => {
         style={popperAnimation}
         className="absolute top-0 left-1/2 transform -translate-x-1/2"
       >
-        <img
-          src="/party-popper.png" // Replace with your party popper image
-          alt="Party Popper"
+        {/* <img
+          // src="/party-popper.png" // Replace with your party popper image
+          // alt="Party Popper"
           className="w-24 h-24"
-        />
+        /> */}
       </animated.div>
 
       {/* Celebration Text */}
