@@ -126,7 +126,7 @@ const HomePage = () => {
                     className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
                   >
                     <button
-                      className="px-5 py-2 bg-[#4caf50] text-white rounded-lg shadow-md hover:bg-[#45a049] transition-all hover:scale-105"
+                      className="px-5 py-2 bg-[#f1b8a7] text-white rounded-lg shadow-md hover:bg-[#a28c7b] transition-all hover:scale-105"
                       onClick={() => handleViewMore(index)}
                     >
                       View More
@@ -211,7 +211,7 @@ const HomePage = () => {
                 <ul className="list-disc pl-6 mt-2">
                   <li>You must be at least 18 years old.</li>
                   <li>You agree to follow all event rules.</li>
-                  <li>You understand that your data may be collected.</li>
+                  <li>If You tend to leave event in middle your account will be suspended.</li>
                 </ul>
               </p>
               <div className="mb-6">

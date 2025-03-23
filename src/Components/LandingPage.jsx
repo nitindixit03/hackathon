@@ -79,7 +79,7 @@ const LandingPage = () => {
         {/* Continue Button */}
         <div className="absolute bottom-20 w-full flex justify-center">
           <button
-            onClick={() => navigate("/login")}
+            onClick={() => navigate("/home")}
             className="bg-[#efc078] text-white px-6 py-3 rounded-lg text-lg shadow-lg border-2 border-[#4a3b3b] hover:bg-[#e0a895] transition-colors"
           >
             Continue
